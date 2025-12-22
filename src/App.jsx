@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Toaster } from "react-hot-toast"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import Feed from "./Pages/Feed"
@@ -19,6 +20,7 @@ function App() {
         </Routes>
 
       </BrowserRouter>
+      <Toaster />
     </>
   )
 }

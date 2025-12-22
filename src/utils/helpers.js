@@ -1,0 +1,13 @@
+import toast from 'react-hot-toast';
+
+export const helpingMethod = {
+    showToaster: (message, type = 'success') => {
+        if (type === 'success') {
+            toast.success(message);
+        } else if (type === 'error') {
+            toast.error(message);
+        } else {
+            toast(message);
+        }
+    },
+};

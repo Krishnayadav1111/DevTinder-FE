@@ -20,7 +20,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const result = await login(data).unwrap();
-      dispatch(addUser(result));
+      dispatch(addUser(result?.data));
       navigate("/");
     } catch (err) {
       console.error("Login failed:", err);
