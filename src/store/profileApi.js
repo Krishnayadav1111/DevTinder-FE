@@ -7,11 +7,18 @@ export const profileApi = createApi({
     endpoints: (builder) => ({
         viewProfile: builder.query({
             query: () => ({
-                url: "/profile/view",
+                url: "profile/view",
                 method: "GET",
+            }),
+        }),
+        editProfile: builder.mutation({
+            query: (body) => ({
+                url: "profile/Edit",
+                method: "PATCH",
+                data: body,
             }),
         }),
     }),
 });
 
-export const { useViewProfileQuery } = profileApi;
+export const { useViewProfileQuery, useEditProfileMutation } = profileApi;

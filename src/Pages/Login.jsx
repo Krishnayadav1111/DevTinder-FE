@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../store/authApi";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -60,13 +60,14 @@ const Login = () => {
 
             {error && <p className="text-error text-sm text-center mt-2">{error.data || "Login failed"}</p>}
 
-            <div className="card-actions justify-center mt-6">
+            <div className="card-actions justify-center mt-6 flex-col items-center">
               <button
                 type="submit"
                 className={`btn btn-primary w-full max-w-xs ${isLoading ? 'loading' : ''}`}
               >
                 Login
               </button>
+              <p className="mt-4 text-center">New User? <Link to="/signup" className="link link-primary">Sign Up</Link></p>
             </div>
           </form>
         </div>

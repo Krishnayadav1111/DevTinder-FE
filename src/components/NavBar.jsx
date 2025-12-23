@@ -1,14 +1,31 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom';
+import { useLogoutMutation } from '../store/authApi';
+import { removeUser } from '../store/userSlice';
 
 const NavBar = () => {
   const user = useSelector((state) => state.user);
-  console.log(user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [logout] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+    } catch (error) {
+      console.error("Logout failed: ", error);
+    } finally {
+      dispatch(removeUser());
+      navigate("/login");
+    }
+  }
+
   return (
     <>
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">🎙️Dev Tinder</a>
+          <Link to="/" className="btn btn-ghost text-xl">🎙️Dev Tinder</Link>
         </div>
         {user && <div className="flex gap-2">
           <div className='mr-2'> Welcome {user?.firstName}</div>
@@ -26,13 +43,13 @@ const NavBar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
               <li>
-                <a className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+              <li><Link to="/connections">Connections</Link></li>
+              <li><a onClick={handleLogout}>Logout</a></li>
             </ul>
           </div>
         </div>}
