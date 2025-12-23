@@ -19,7 +19,13 @@ export const feedApi = createApi({
                 data: emailId ? { emailId } : undefined,
             }),
         }),
+        sendRequest: builder.mutation({
+            query: ({ status, userId }) => ({
+                url: `request/send/${status}/${userId}`,
+                method: "POST",
+            }),
+        }),
     }),
 });
 
-export const { useGetFeedQuery } = feedApi;
+export const { useGetFeedQuery, useSendRequestMutation } = feedApi;

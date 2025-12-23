@@ -6,6 +6,9 @@ import Signup from "./Pages/Signup"
 import Feed from "./Pages/Feed"
 import Profile from "./Pages/Profile"
 import Connections from "./Pages/Connections"
+import Request from "./Pages/Request"
+
+
 function App() {
   return (
     <>
@@ -19,6 +22,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/connections" element={<Connections />} />
+            <Route path="/requests" element={<Request />} />
 
           </Route>
 

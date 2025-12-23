@@ -6,6 +6,7 @@ import { feedApi } from "./feedApi";
 import feedReducer from "./feedSlice";
 import { setAxiosStore } from "../utils/apiClient";
 import connectionReducer from "./connectionSlice";
+import requestReducer from "./requestSlice";
 import { connectionApi } from "./connectionApi";
 
 const appStore = configureStore({
@@ -13,6 +14,7 @@ const appStore = configureStore({
         user: userReducer,
         feed: feedReducer,
         connection: connectionReducer,
+        request: requestReducer,
         [authApi.reducerPath]: authApi.reducer,
         [profileApi.reducerPath]: profileApi.reducer,
         [feedApi.reducerPath]: feedApi.reducer,

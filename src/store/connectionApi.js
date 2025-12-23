@@ -16,7 +16,19 @@ export const connectionApi = createApi({
                 method: "GET",
             }),
         }),
+        getRequests: builder.query({
+            query: () => ({
+                url: "user/requests/pending",
+                method: "GET",
+            }),
+        }),
+        reviewRequest: builder.mutation({
+            query: ({ status, requestId }) => ({
+                url: `request/respond/${status}/${requestId}`,
+                method: "POST",
+            }),
+        }),
     }),
 });
 
-export const { useGetConnectionsQuery } = connectionApi;
+export const { useGetConnectionsQuery, useGetRequestsQuery, useReviewRequestMutation } = connectionApi;
