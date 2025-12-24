@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addConnection } from '../store/connectionSlice';
 
 const Connections = () => {
-    const { data, isLoading, error } = useGetConnectionsQuery();
+    const { data, isLoading, error } = useGetConnectionsQuery(undefined, { refetchOnMountOrArgChange: true });
     const dispatch = useDispatch();
     const connections = useSelector((state) => state.connection?.connections);
 

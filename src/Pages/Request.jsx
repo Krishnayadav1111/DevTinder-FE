@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRequest, removeRequest } from '../store/requestSlice';
 
 const Request = () => {
-    const { data, isLoading, error } = useGetRequestsQuery();
+    const { data, isLoading, error } = useGetRequestsQuery(undefined, { refetchOnMountOrArgChange: true });
     const [reviewRequest, { isLoading: isReviewLoading }] = useReviewRequestMutation();
     const dispatch = useDispatch();
     const requests = useSelector((state) => state.request?.requests);

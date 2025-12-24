@@ -14,6 +14,7 @@ const Signup = () => {
     const onSubmit = async (data) => {
         try {
             const result = await signup(data).unwrap();
+            console.log(result);
             dispatch(addUser(result?.data));
             navigate("/profile");
         } catch (err) {

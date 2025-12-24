@@ -1,18 +1,26 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 import { useViewProfileQuery } from "../store/profileApi";
 import EditProfile from "../components/EditProfile";
 import UserCard from "../components/UserCard";
 
 const Profile = () => {
     const { data: user, isLoading, error } = useViewProfileQuery();
+    const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
-
-    if (isLoading) return <h1>Loading...</h1>;
-    if (error) return <h1>Error loading profile</h1>;
 
     // API response wrapper handling (assuming similar to feed)
     const userData = user?.data || user;
+
+    useEffect(() => {
+        if (userData) {
+            dispatch(addUser(userData));
+        }
+    }, [userData, dispatch]);
+
+    if (isLoading) return <h1>Loading...</h1>;
+    if (error) return <h1>Error loading profile</h1>;
 
     return (
         <div className="flex flex-wrap justify-center gap-10 my-10 p-4">

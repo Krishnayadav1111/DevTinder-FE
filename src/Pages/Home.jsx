@@ -5,15 +5,18 @@ import Footer from '../components/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { useViewProfileQuery } from '../store/profileApi'
 import { addUser } from '../store/userSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Home = () => {
   const dispatch = useDispatch();
   const userData = useSelector((store) => store.user);
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const shouldSkip = !!userData || ["/login", "/signup"].includes(location.pathname);
+
   const { data: userProfile, isLoading, isError } = useViewProfileQuery(undefined, {
-    skip: !!userData,
+    skip: shouldSkip,
   });
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const Home = () => {
     if (userData) return;
     if (isLoading) return;
 
-    if (userProfile?.data) {
+    if (userProfile?.data && !["/login", "/signup"].includes(location.pathname)) {
       dispatch(addUser(userProfile?.data));
     } else if (isError) {
       navigate('/login');
