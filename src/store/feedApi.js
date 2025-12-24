@@ -1,10 +1,11 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "../utils/apiClient";
+import { API_BASE_URL } from "../utils/constants";
 
 export const feedApi = createApi({
     reducerPath: "feedApi",
     baseQuery: axiosBaseQuery({
-        baseUrl: "http://localhost:3000/",
+        baseUrl: API_BASE_URL,
         prepareHeaders: (headers) => {
             return headers;
         },
