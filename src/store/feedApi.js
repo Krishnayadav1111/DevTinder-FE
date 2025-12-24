@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../utils/constants";
 export const feedApi = createApi({
     reducerPath: "feedApi",
     baseQuery: axiosBaseQuery({
-        baseUrl: API_BASE_URL,
+        baseUrl: "",
         prepareHeaders: (headers) => {
             return headers;
         },
