@@ -9,8 +9,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      emailId: "simran@gmail.com",
-      password: "Elon@321"
+      emailId: "",
+      password: ""
     }
   });
 
