@@ -25,7 +25,7 @@ const NavBar = () => {
     <>
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">Be special</Link>
+          <Link to="/" className="btn btn-ghost text-xl">Dev special</Link>
         </div>
         {user && <div className="flex gap-2">
           <div className='mr-2'> Welcome {user?.firstName}</div>
