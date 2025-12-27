@@ -1,4 +1,4 @@
-name: Deploy Frontend to EC2
+name: Deploy DevTinder Frontend
 
 on:
   push:
@@ -20,14 +20,14 @@ jobs:
             set -e
             echo "🚀 Deploying Frontend"
 
-            cd /var/www/html
+            cd ~/DevTinder-FE
 
             git pull origin master
             npm install
             npm run build
 
             sudo rm -rf /var/www/html/*
-            sudo cp -r build/* /var/www/html/
+            sudo cp -r dist/* /var/www/html/
 
             sudo systemctl reload nginx
-            echo "✅ Frontend deployed successfully"
+            echo "✅ Frontend deployed"
